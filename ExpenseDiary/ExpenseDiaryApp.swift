@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct ExpenseDiaryApp: App {
-    let persistenceController = PersistenceController.shared
+    let coreDataStack = CoreDataStack()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            HomeView()
+                .environment(\.managedObjectContext, coreDataStack.persistentContainer.viewContext)
         }
     }
 }
