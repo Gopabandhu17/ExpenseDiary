@@ -57,6 +57,11 @@ final class PersonalService {
         return nil
     }
     
+    func delete(personal: Personal, completion: SuccessCompletion) {
+        moc.delete(personal)
+        save(completion: completion)
+    }
+    
     // MARK: Save
     private func save(completion: SuccessCompletion) {
         do {

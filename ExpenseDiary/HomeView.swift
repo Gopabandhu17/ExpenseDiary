@@ -31,7 +31,15 @@ struct HomeView: View {
                 
                 switch selectedSegment {
                 case .personal:
-                    PersonalListView(personals: personals)
+                    PersonalListView(personals: personals, 
+                                     type: .personal,
+                                     contentSize: .constant(.zero)) { personal in
+                        personalService?.delete(personal: personal, completion: { isSuccess in
+                            if isSuccess {
+                                personals = personals.filter { $0.name != personal.name }
+                            }
+                        })
+                    }
                 case .group:
                     GroupListView(groups: groups)
                 }
